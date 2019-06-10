@@ -10,7 +10,10 @@ $dni = intval($_POST['dni']);
 //acá puedo hacer las validaciones necesarias antes de la query
 
 try {
-	$base->query("insert into autores (nombre, apellido, edad, dni) values ('$nombre', '$apellido', $edad, '$dni')"); //corre la consulta y me devuelve un resultado dentro de un objeto hijo pdo
+	//$base->query("insert into autores (nombre, apellido, edad, dni) values ('$nombre', '$apellido', $edad, '$dni')"); //corre la consulta y me devuelve un resultado dentro de un objeto hijo pdo
+
+	$consulta = $base->prepare("insert into autores (nombre, apellido, edad, dni) values (?, ?, ?, ?)");
+	$consulta->execute([$nombre, $apellido, $edad, $dni]);
 
 } catch(PDOException $error) {
 	
