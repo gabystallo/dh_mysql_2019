@@ -1,0 +1,1 @@
+select * from actors where favorite_movie_id in (select id from movies where title like '%t%')
